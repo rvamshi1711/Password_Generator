@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    
+    <title>Try</title>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-primary">
+        <h2>Password Generator</h2>    
+    </nav>
+    <div style="padding: 20px;">
+        <form action='password'method="POST">
+            {%csrf_token%}
+            <div class="form-row">
+                <div  class="col col-md-3">
+                  <input type="text" class="form-control" name='length' placeholder="Enter length of password here....">
+                </div>
+            </div>    
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="checkbox[]" value='string.ascii_uppercase' id="defaultCheck1" >
+                <label class="form-check-label" for="defaultCheck1" >
+                    Uppercase
+                </label>
+            </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="checkbox[]" value='string.digits' id="defaultCheck2" >
+                    <label class="form-check-label" for="defaultCheck2">
+                        Numbers
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="checkbox[]" value='string.punctuation' id="defaultCheck3" >
+                    <label class="form-check-label" for="defaultCheck3">
+                        Punctuation
+                    </label>
+                </div>
+            <button type="submit" class="btn btn-primary">Generate</button>
+            
+        </form>
+    </div>
+    <div style="font-weight:bold;   padding-left: 20px;" >
+        <span style="font-weight: normal;">Generated Password: </span>
+        <span style="font-weight: bolder;">
+            {%for q in p1%}
+            {% if forloop.last %}
+            
+            {{q.p}}
+            {%endif%}
+            {%endfor%}
+        </span> 
+    </div>
+    
+        {%for m in messages%}
+        <div style="padding: 20px;"><h3>{{m}}</h3></div>
+        {%endfor%}
+    
+    
+</body>
+</html>
